@@ -11,8 +11,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
-const staticFiles = express.static(path.join(__dirname, './client/build'))
-app.use(staticFiles)
+app.use(express.static(path.join(__dirname, 'build')));
 
 require('dotenv').config()
 
@@ -27,6 +26,10 @@ connection.connect(err => {
   if(err) {
     return err
   }
+})
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 })
 
 // Get all employees
@@ -82,6 +85,8 @@ app.delete('/employee/:id', (req, res) => {
     return res.send({ error: false, data: results, message: 'Employee has been deleted successfully.' })
   })
 })
+
+app.use('/*', staticFiles)
 
 app.listen(PORT, () => {
   console.log(`Employee server running on port ${PORT}`)
