@@ -7,7 +7,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("/employees")
+      .get(`https://employee-management-insideout.herokuapp.com/${process.env.PORT}/employees`)
       .then(res => {
         setEmployees(res.data)
       })
