@@ -11,7 +11,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, '/client/build')))
 
 require('dotenv').config()
 
@@ -28,9 +28,9 @@ connection.connect(err => {
   }
 })
 
-// if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
-// }
+}
 
 // Get all employees
 app.get('/employees', (req, res) => {
@@ -85,6 +85,10 @@ app.delete('/employee/:id', (req, res) => {
     return res.send({ error: false, data: results, message: 'Employee has been deleted successfully.' })
   })
 })
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+});
 
 app.listen(PORT, () => {
   console.log(`Employee server running on port ${PORT}`)

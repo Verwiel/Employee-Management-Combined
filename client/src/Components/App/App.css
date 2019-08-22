@@ -2,6 +2,11 @@ body {
   text-align: center;
 }
 
+table {
+width:100%;
+position:relative;
+  
+}
 
 .App {
   text-align: center;
