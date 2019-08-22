@@ -28,8 +28,8 @@ connection.connect(err => {
   }
 })
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 })
 
 // Get all employees
@@ -85,8 +85,6 @@ app.delete('/employee/:id', (req, res) => {
     return res.send({ error: false, data: results, message: 'Employee has been deleted successfully.' })
   })
 })
-
-app.use('/*', staticFiles)
 
 app.listen(PORT, () => {
   console.log(`Employee server running on port ${PORT}`)
