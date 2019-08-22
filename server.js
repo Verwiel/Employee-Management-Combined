@@ -8,12 +8,12 @@ const PORT = process.env.PORT || 4000
 const app = express()
 
 /* redirection for heroku to https from http */
-app.use((req, res, next) => {
-  if (process.env.NODE_ENV === 'production'
-    && req.header('x-forwarded-proto') !== 'https') {
-    res.redirect(`https://${req.header('host')}${req.url}`);
-  } else next();
-})
+// app.use((req, res, next) => {
+//   if (process.env.NODE_ENV === 'production'
+//     && req.header('x-forwarded-proto') !== 'https') {
+//     res.redirect(`https://${req.header('host')}${req.url}`);
+//   } else next();
+// })
 
 
 app.use(cors())
