@@ -12,7 +12,7 @@ const AddEmployee = () => {
 
   const handleSubmit= async (e) => {
     e.preventDefault()
-    await fetch('/employee',{
+    await fetch('http://localhost:4000/employee',{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
