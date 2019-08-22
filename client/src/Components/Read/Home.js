@@ -7,7 +7,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/employees")
+      .get("/employees")
       .then(res => {
         setEmployees(res.data)
       })
