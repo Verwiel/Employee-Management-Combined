@@ -7,10 +7,18 @@ const PORT = process.env.PORT || 4000
 
 const app = express()
 
+/* redirection for heroku to https from http */
+app.use((req, res, next) => {
+  if (process.env.NODE_ENV === 'production'
+    && req.header('x-forwarded-proto') !== 'https') {
+    res.redirect(`https://${req.header('host')}${req.url}`);
+  } else next();
+})
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
+/* Build and deployment */
 app.use(express.static(path.join(__dirname, '/client/build')))
 
 require('dotenv').config()
@@ -86,6 +94,7 @@ app.delete('/employee/:id', (req, res) => {
   })
 })
 
+/* Build and deployment */
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
 });
