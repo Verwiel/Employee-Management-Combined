@@ -7,23 +7,18 @@ const PORT = process.env.PORT || 4000
 
 const app = express()
 
-/* redirection for heroku to https from http */
-// app.use((req, res, next) => {
-//   if (process.env.NODE_ENV === 'production'
-//     && req.header('x-forwarded-proto') !== 'https') {
-//     res.redirect(`https://${req.header('host')}${req.url}`);
-//   } else next();
-// })
-
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
 /* Build and deployment */
-app.use(express.static(path.join(__dirname, '/client/build')))
+// app.use(express.static(path.join(__dirname, '/client/build')))
 
-require('dotenv').config()
+// require('dotenv').config()
 
 const connection = mysql.createConnection({
   host     : process.env.DB_HOST,
@@ -38,9 +33,7 @@ connection.connect(err => {
   }
 })
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-}
+
 
 // Get all employees
 app.get('/employees', (req, res) => {
