@@ -97,7 +97,7 @@ app.delete('/employee/:id', (req, res) => {
 })
 
 /* Build and deployment */
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
 });
 
