@@ -14,6 +14,8 @@ app.use((req, res, next) => {
     res.redirect(`https://${req.header('host')}${req.url}`);
   } else next();
 })
+
+
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
