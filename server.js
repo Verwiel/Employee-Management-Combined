@@ -47,7 +47,8 @@ app.get('/employees', (req, res) => {
   let sql = 'SELECT * FROM employee_table'
   connection.query(sql, (error, results, fields) => {
   if (error) throw error;
-    return res.send(results)
+    console.log(res)
+    return res.send({ error: false, data: results, message: 'Employee list' })
   })
 })
 
