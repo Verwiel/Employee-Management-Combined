@@ -36,6 +36,7 @@ const EditEmployee = props => {
   return (
     <>
       {toHome ? <Redirect to='/'/>:null}
+      <h1>Edit Employee</h1>
       <form onSubmit={handleUpdate}>
         <input type='text' 
           name='firstName' 

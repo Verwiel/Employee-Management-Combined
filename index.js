@@ -2,7 +2,7 @@ const express = require("express")
 const mysql = require('mysql')
 const cors = require('cors')
 const bodyParser = require('body-parser')
-
+const path = require('path')
 const PORT = process.env.PORT || 4000
 
 const app = express()
@@ -10,6 +10,9 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
+
+const staticFiles = express.static(path.join(__dirname, './client/build'))
+app.use(staticFiles)
 
 require('dotenv').config()
 
