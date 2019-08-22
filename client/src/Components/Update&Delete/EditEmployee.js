@@ -12,7 +12,7 @@ const EditEmployee = props => {
 
   const handleUpdate= async (e) => {
     e.preventDefault()
-    await fetch(`http://localhost:4000/employee/${singleEmployeeId}`, {
+    await fetch(`https://employee-management-insideout.herokuapp.com/employee/${singleEmployeeId}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -27,7 +27,7 @@ const EditEmployee = props => {
 
   const handleDelete= async (e) => {
     e.preventDefault()
-    await fetch (`http://localhost:4000/employee/${singleEmployeeId}`, {
+    await fetch (`https://employee-management-insideout.herokuapp.com/employee/${singleEmployeeId}`, {
       method: "DELETE"
     })
     await setToHome(true)

@@ -7,7 +7,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/employees")
+      .get("https://employee-management-insideout.herokuapp.com/employees")
       .then(res => {
         setEmployees(res.data)
       })
@@ -21,7 +21,7 @@ const Home = () => {
         <div>
           <h2>Employees</h2>
           <EmployeeTable employees={employees}/>
-          <a  href="/employee">Add Employee</a>
+          <a href="/add">Add Employee</a>
         </div>
       </div>
     </div>

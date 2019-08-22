@@ -20,7 +20,7 @@ const EmployeeTable = props => (
             <td>{employee.email}</td>
             <td>{employee.phone}</td>
             <td>
-              <a href={'/employee/'+ employee.employee_id}>Edit</a>
+              <a href={'/edit/'+ employee.employee_id}>Edit</a>
             </td>
           </tr>
         ))

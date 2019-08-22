@@ -12,7 +12,7 @@ const AddEmployee = () => {
 
   const handleSubmit= async (e) => {
     e.preventDefault()
-    await fetch('http://localhost:4000/employee',{
+    await fetch('https://employee-management-insideout.herokuapp.com/employee',{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
