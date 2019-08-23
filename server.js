@@ -7,6 +7,18 @@ const PORT = process.env.PORT || 4000
 
 const app = express()
 
+const connection = mysql.createConnection({
+  host     : "localhost",
+  user     : "root",
+  password : "Odley!Vern1324",
+  database : "employees"
+})
+
+connection.connect(err => {
+  if(err) {
+    return err
+  }
+})
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
@@ -16,22 +28,9 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
 /* Build and deployment */
-// app.use(express.static(path.join(__dirname, '/client/build')))
+app.use(express.static(path.join(__dirname, '/client/build')))
 
-// require('dotenv').config()
-
-const connection = mysql.createConnection({
-  host     : process.env.DB_HOST,
-  user     : process.env.DB_USER,
-  password : process.env.DB_PASS,
-  database : process.env.DB_NAME
-})
-
-connection.connect(err => {
-  if(err) {
-    return err
-  }
-})
+require('dotenv').config()
 
 
 
@@ -40,8 +39,7 @@ app.get('/employees', (req, res) => {
   let sql = 'SELECT * FROM employee_table'
   connection.query(sql, (error, results, fields) => {
   if (error) throw error;
-    console.log(res)
-    return res.send({ error: false, data: results, message: 'Employee list' })
+    return res.send(results)
   })
 })
 
@@ -54,7 +52,7 @@ app.get('/employee/:id', (req, res) => {
   }
   connection.query(sql, employee_id, (error, results, fields) => {
   if (error) throw error;
-    return res.send({ error: false, data: results[0], message: 'Employee' })
+    return res.send(results)
   })
 })
 
@@ -68,7 +66,7 @@ app.post('/employee', (req, res) => {
 })
 
 //  Update with id
-app.put('/employee/:id', (req, res) => {
+app.put('/employee/update/:id', (req, res) => {
   let sql = "UPDATE employee_table SET ? WHERE employee_id = ?"
   let employee_id = req.params.id
   connection.query(sql, [req.body, employee_id], (error, results, fields) => {
@@ -77,8 +75,9 @@ app.put('/employee/:id', (req, res) => {
   })
 })
 
-//  Delete
-app.delete('/employee/:id', (req, res) => {
+
+//  Delete by ID
+app.delete('/employee/delete/:id', (req, res) => {
   let sql = 'DELETE FROM employee_table WHERE employee_id = ?'
   let employee_id = req.params.id
   if (!employee_id) {
@@ -91,9 +90,9 @@ app.delete('/employee/:id', (req, res) => {
 })
 
 /* Build and deployment */
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
-});
+// app.get('/*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+// });
 
 app.listen(PORT, () => {
   console.log(`Employee server running on port ${PORT}`)

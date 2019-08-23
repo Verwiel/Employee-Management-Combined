@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import EmployeeTable from './EmployeeTable'
-import axios from 'axios';
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Home = () => {
   const [employees, setEmployees] = useState([])
 
   useEffect(() => {
     axios
-      .get("https://employee-management-insideout.herokuapp.com/employees")
+      .get("http://localhost:4000/employees")
       .then(res => {
         setEmployees(res.data)
       })
+      
       .catch(err => {console.log(err)})
   }, [])
 
@@ -21,7 +23,9 @@ const Home = () => {
         <div>
           <h2>Employees</h2>
           <EmployeeTable employees={employees}/>
-          <a href="/add">Add Employee</a>
+          <Link to ='/add'>
+            <button>Add Employee</button>
+          </Link>
         </div>
       </div>
     </div>

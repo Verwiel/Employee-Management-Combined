@@ -1,0 +1,26 @@
+@import 'variables';
+
+
+body {
+  font: 100% $font-stack;
+  
+}
+
+table {
+  th {
+    background-color: $secondary-color
+  }
+width:100%;
+position:relative;
+
+  
+}
+
+.App {
+  text-align: center;
+}
+
+.container {
+  width: 85%;
+  background-color: $primary-color;
+}

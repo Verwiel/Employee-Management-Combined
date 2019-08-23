@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Redirect, Link } from 'react-router-dom'
+import axios from 'axios'
 
 const EditEmployee = props => {
   const [toHome, setToHome] = useState(false)
@@ -8,11 +9,23 @@ const EditEmployee = props => {
   const [emailAddress, setEmailAddress] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
 
+
+  const [data, setData] = useState([])
+
   const singleEmployeeId = props.match.params.id
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4000/employee/${singleEmployeeId}`)
+      .then(res => {
+        setData(res.data)
+      })
+      .catch(err => {console.log(err)})
+  },[])
 
   const handleUpdate= async (e) => {
     e.preventDefault()
-    await fetch(`https://employee-management-insideout.herokuapp.com/employee/${singleEmployeeId}`, {
+    await fetch(`http://localhost:4000/employee/update/${singleEmployeeId}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -25,22 +38,20 @@ const EditEmployee = props => {
     await setToHome(true)
   }
 
-  const handleDelete= async (e) => {
-    e.preventDefault()
-    await fetch (`https://employee-management-insideout.herokuapp.com/employee/${singleEmployeeId}`, {
-      method: "DELETE"
-    })
-    await setToHome(true)
-  }
-
   return (
     <>
       {toHome ? <Redirect to='/'/>:null}
-      <h1>Edit Employee</h1>
+      
+      {data.map((user, index) => (
+        <div key={index} user={user}> 
+          <h3>Update {user.first_name} {user.last_name}</h3>
+        </div>
+      ))}
+
       <form onSubmit={handleUpdate}>
         <input type='text' 
           name='firstName' 
-          placeholder={'First Name'} 
+          placeholder="First Name"
           value={firstName}
           onChange={e => setFirstName(e.target.value)} 
           required 
@@ -75,11 +86,9 @@ const EditEmployee = props => {
 
       </form>
 
-      <form onSubmit={handleDelete}>
-        <input type="submit" value="Delete" />
-      </form>
-
-      <a href='/'>Cancel</a>
+      <Link to='/'>
+        <button href="/">Cancel</button>
+      </Link>
     </>
   )
 }

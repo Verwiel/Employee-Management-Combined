@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const EmployeeTable = props => (
   <table>
@@ -20,7 +21,12 @@ const EmployeeTable = props => (
             <td>{employee.email}</td>
             <td>{employee.phone}</td>
             <td>
-              <a href={'/edit/'+ employee.employee_id}>Edit</a>
+            <Link to={'/edit/'+ employee.employee_id}>
+              <button>Update</button>
+            </Link>
+            <Link to={'/delete/'+ employee.employee_id}>
+              <button>Delete</button>
+            </Link>
             </td>
           </tr>
         ))

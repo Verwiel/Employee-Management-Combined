@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
-
+import { Redirect, Link } from 'react-router-dom'
 
 const AddEmployee = () => {
   const [firstName, setFirstName] = useState('')
@@ -12,7 +11,7 @@ const AddEmployee = () => {
 
   const handleSubmit= async (e) => {
     e.preventDefault()
-    await fetch('https://employee-management-insideout.herokuapp.com/employee',{
+    await fetch('http://localhost:4000/employee',{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -70,7 +69,9 @@ const AddEmployee = () => {
         </button>
       
       </form>
-      <a href="/">Home</a>
+      <Link to='/'>
+        <button href="/">Cancel</button>
+      </Link>
     </>
   )
 }
