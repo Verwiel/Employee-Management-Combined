@@ -8,10 +8,10 @@ const PORT = process.env.PORT || 4000
 const app = express()
 
 const connection = mysql.createConnection({
-  host     : "localhost",
-  user     : "root",
-  password : "Odley!Vern1324",
-  database : "employees"
+  host     : "",
+  user     : "",
+  password : "",
+  database : ""
 })
 
 connection.connect(err => {
