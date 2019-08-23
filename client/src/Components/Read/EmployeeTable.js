@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const EmployeeTable = props => (
+  <div class='container'>
   <table>
     <thead>
       <tr>
@@ -20,13 +21,17 @@ const EmployeeTable = props => (
             <td>{employee.first_name} {employee.last_name}</td>
             <td>{employee.email}</td>
             <td>{employee.phone}</td>
-            <td>
-            <Link to={'/edit/'+ employee.employee_id}>
-              <button>Update</button>
-            </Link>
-            <Link to={'/delete/'+ employee.employee_id}>
-              <button>Delete</button>
-            </Link>
+            <td class='action-column'>
+              <td>
+                <Link to={'/edit/'+ employee.employee_id}>
+                  <button title='Edit Employee' class="fas fa-pen"></button>
+                </Link>
+              </td>
+              <td>
+                <Link to={'/delete/'+ employee.employee_id}>
+                  <button title='Delete Employee' class="fas fa-trash-alt"></button>
+                </Link>
+              </td>
             </td>
           </tr>
         ))
@@ -37,6 +42,7 @@ const EmployeeTable = props => (
       )}
     </tbody>
   </table>
+  </div>
 )
 
 export default EmployeeTable

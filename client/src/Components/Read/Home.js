@@ -21,10 +21,9 @@ const Home = () => {
       <h1>Employee Management</h1>
       <div>
         <div>
-          <h2>Employees</h2>
           <EmployeeTable employees={employees}/>
           <Link to ='/add'>
-            <button>Add Employee</button>
+            <button title='Add Employee' class="fas fa-user-plus add"></button>
           </Link>
         </div>
       </div>

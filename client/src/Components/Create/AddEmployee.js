@@ -63,15 +63,13 @@ const AddEmployee = () => {
         onChange={e => setPhoneNumber(e.target.value)} 
         required 
         />
-      
-        <button type="submit">
-          Submit
-        </button>
-      
+        <nav>
+          <Link to='/'>
+            <button title='Cancel' class="fas fa-ban deny"></button>
+          </Link>
+          <button title='Confirm' type="submit" class="far fa-check-circle confirm"></button>
+        </nav>
       </form>
-      <Link to='/'>
-        <button href="/">Cancel</button>
-      </Link>
     </>
   )
 }
