@@ -98,9 +98,9 @@ app.delete('/employee/delete/:id', (req, res) => {
 })
 
 /* Build and deployment */
-// app.get('/*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
-// });
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+});
 
 app.listen(PORT, () => {
   console.log(`Employee server running on port ${PORT}`)
