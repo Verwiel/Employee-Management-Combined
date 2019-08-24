@@ -1,4 +1,6 @@
-@import 'variables';
+$font-stack:  Arial, Helvetica, sans-serif;
+$primary-color: rgb(0, 119, 167);
+$secondary-color: rgb(8, 227, 243);
 %button-shared {
   color: $primary-color;
   background-color: $secondary-color;
@@ -16,6 +18,13 @@
  padding: 5px
 }
 
+html,
+body,
+ul,
+ol {
+  margin:  0;
+  padding: 0;
+}
 
 body {
   font: 100% $font-stack;
