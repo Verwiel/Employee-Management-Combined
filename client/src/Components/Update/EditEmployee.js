@@ -47,7 +47,9 @@ const EditEmployee = props => {
           <h3>Update {employee.first_name} {employee.last_name}</h3>
         </div>
       ))}
-
+      <div>
+        <h3>(must update all fields)</h3>
+      </div>
       <form onSubmit={handleUpdate}>
         <input type='text' 
           name='firstName' 
