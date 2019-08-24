@@ -10,7 +10,7 @@ const EditEmployee = props => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/employee/${singleEmployeeId}`)
+      .get(`https://employee-management-insideout.herokuapp.com/employee/${singleEmployeeId}`)
       .then(res => {
         setData(res.data)
       })
@@ -19,7 +19,7 @@ const EditEmployee = props => {
 
   const handleDelete= async (e) => {
     e.preventDefault()
-    await fetch (`http://localhost:4000/employee/delete/${singleEmployeeId}`, {
+    await fetch (`https://employee-management-insideout.herokuapp.com/employee/delete/${singleEmployeeId}`, {
       method: "DELETE"
     })
     await setToHome(true)

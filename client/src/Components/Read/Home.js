@@ -8,7 +8,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/employees")
+      .get("https://employee-management-insideout.herokuapp.com/employees")
       .then(res => {
         setEmployees(res.data)
       })
