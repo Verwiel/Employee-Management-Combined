@@ -42,9 +42,9 @@ const EditEmployee = props => {
     <>
       {toHome ? <Redirect to='/'/>:null}
       
-      {data.map((user, index) => (
-        <div key={index} user={user}> 
-          <h3>Update {user.first_name} {user.last_name}</h3>
+      {data.map((employee, index) => (
+        <div key={index} employee={employee}> 
+          <h3>Update {employee.first_name} {employee.last_name}</h3>
         </div>
       ))}
 

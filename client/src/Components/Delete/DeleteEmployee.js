@@ -29,9 +29,9 @@ const EditEmployee = props => {
     <>
     {toHome ? <Redirect to='/'/>:null}
 
-    {data.map((user, index) => (
-      <div key={index} user={user}> 
-        <h3>Are you sure you want to delete {user.first_name} {user.last_name}</h3>
+    {data.map((employee, index) => (
+      <div key={index} employee={employee}> 
+        <h3>Are you sure you want to delete {employee.first_name} {employee.last_name}?</h3>
       </div>
     ))}
 

@@ -38,6 +38,11 @@ table {
   }
 }
 
+h1, h3 {
+  color: white;
+  text-decoration-line: underline
+}
+
 .App {
   text-align: center;
   background-color: $primary-color;
