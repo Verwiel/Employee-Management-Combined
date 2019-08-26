@@ -1,6 +1,7 @@
 $font-stack:  Arial, Helvetica, sans-serif;
 $primary-color: rgb(0, 119, 167);
 $secondary-color: rgb(8, 227, 243);
+
 %button-shared {
   color: $primary-color;
   background-color: $secondary-color;
@@ -19,9 +20,7 @@ $secondary-color: rgb(8, 227, 243);
 }
 
 html,
-body,
-ul,
-ol {
+body {
   margin:  0;
   padding: 0;
 }
@@ -62,12 +61,7 @@ h1, h3 {
   padding-bottom: 5%;
 }
 
-// button {
-//   @extend %button-shared
-// }
-
 .container {
-  width: 90%;
   background-color: gray;
   display: flex;
   margin-left: 5%;
@@ -102,3 +96,15 @@ h1, h3 {
     color: rgb(131, 0, 0)
   }
 }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  input {
+    margin: .3em 10em 1em 10em;
+    padding: .5em;
+    background-color: $secondary-color
+  }
+  // flex-basis: 50%;
+} 
