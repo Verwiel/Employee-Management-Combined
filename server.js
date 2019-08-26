@@ -15,7 +15,7 @@ const db_config = {
   database : process.env.DB_NAME
 }
 
-const connection
+// var connection
 
 function handleDisconnect() {
   connection = mysql.createConnection(db_config)
