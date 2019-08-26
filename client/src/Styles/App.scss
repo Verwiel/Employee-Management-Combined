@@ -46,9 +46,13 @@ table {
   }
 }
 
-h1, h3 {
+h1 {
   color: white;
   text-decoration-line: underline
+}
+
+h3 {
+  color: white;
 }
 
 .App {
@@ -79,6 +83,18 @@ h1, h3 {
   justify-content: space-evenly;
 }
 
+// Forms
+.form {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  input {
+    margin: .3em 10em 1em 10em;
+    padding: .5em;
+    background-color: $secondary-color
+  }
+} 
+
 .confirm {
   @extend %button-shared;
   @extend %yes-no;
@@ -97,14 +113,3 @@ h1, h3 {
   }
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  color: white;
-  input {
-    margin: .3em 10em 1em 10em;
-    padding: .5em;
-    background-color: $secondary-color
-  }
-  // flex-basis: 50%;
-} 
