@@ -7,26 +7,35 @@ const PORT = process.env.PORT || 4000
 
 const app = express()
 
-const connection = mysql.createConnection({
+const db_config = {
   host     : process.env.DB_HOST,
   user     : process.env.DB_USER,
   password : process.env.DB_PASS,
   database : process.env.DB_NAME
-})
+}
 
-// const connection = mysql.createConnection({
-//   host     : 'us-cdbr-iron-east-02.cleardb.net',
-//   user     : 'b5c951a1e5eef5',
-//   password : '450825cb',
-//   database : 'heroku_c4e479df1191d6a'
-// })
+handleDisconnect() {
+  connection = mysql.createConnection(db_config)
 
-
-connection.connect(err => {
+  connection.connect(err => {
   if(err) {
-    return err
+    console.log('error connecting to db: ', err)
+    setTimeout(handleDisconnect, 2000)
   }
 })
+
+connection.on('error', (err) => {
+  console.log('database error', err);
+  if(err.code === 'PROTOCOL_CONNECTION_LOST') {
+    handleDisconnect()
+  } else {                                      
+    throw err                            
+  }
+})
+}
+
+handleDisconnect()
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
