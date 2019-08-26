@@ -30,22 +30,6 @@ body {
   background-color: rgba(32, 32, 32, 0.164)
 }
 
-table {
-  width:100%;
-  th {
-    background-color: $secondary-color;
-    padding: 1em;
-  }
-  tr{
-    background-color: white;
-  }
-  button {
-    @extend %button-shared;
-    margin: .5em;
-    font-size: 1em;
-  }
-}
-
 h1 {
   color: white;
   text-decoration-line: underline
@@ -76,6 +60,23 @@ h3 {
 .add {
   @extend %button-shared;
   font-size: 3em;
+}
+
+// Table
+table {
+  width:100%;
+  th {
+    background-color: $secondary-color;
+    padding: 1em;
+  }
+  tr{
+    background-color: white;
+  }
+  button {
+    @extend %button-shared;
+    margin: .5em;
+    font-size: 1em;
+  }
 }
 
 .action-column {
